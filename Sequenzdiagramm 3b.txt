@@ -1,0 +1,11 @@
+title Projekt Ampel: Aufgabe 3b)
+
+participant Master
+participant Slave
+
+Master->Slave: Anfrage: Button gedrückt?\n3 byte für LEDs werden mitgeschickt\nByte 1: Ampelzeichen Mainstreet\nByte 2: Ampelzeichen Sidestreet\nByte 3: '\\n'
+Master->Master: Warte eine Sekunde auf Antwort,\nsonst timeout
+note right of Master:Bei Timeout wird die Mainstreet Ampel\nauf grün gesetzt und die Sidestreet\nAmpel blinkt gelb
+Master<-Slave: Antwort: Button gedrückt?\n2 Byte werden geschickt\nByte 1: 'y' (ja) oder 'n' (nein)\nByte 2: '\\n'
+Slave->Slave: Warte eine Sekunde auf Anfrage,\nsonst timeout
+note right of Slave:Bei Timeout wird die Mainstreet Ampel\nauf grün gesetzt und die Sidestreet\nAmpel blinkt gelb
